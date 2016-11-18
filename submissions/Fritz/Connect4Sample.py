@@ -4,6 +4,8 @@ from itertools import groupby, chain
 NONE = '.'
 RED = 'R'
 YELLOW = 'Y'
+Num = 0
+turn = "Red"
 
 def diagonalsPos (matrix, cols, rows):
 	"""Get positive diagonals, going from bottom-left to top-right."""
@@ -65,11 +67,21 @@ class Game:
 		print()
 
 
+	def computerMove(self):
+		#let the computer pick a move
+		column = 3
+		return column
+
+
 if __name__ == '__main__':
 	g = Game()
 	turn = RED
 	while True:
 		g.printBoard()
-		row = input('{}\'s turn: '.format('Red' if turn == RED else 'Yellow'))
-		g.insert(int(row), turn)
+		if (turn == RED):
+			row = input('{}\'s turn: '.format('Red' if turn == RED else 'Yellow'))
+			g.insert(int(row), turn)
+		else:
+			row = g.computerMove()
+			g.insert(int(row), turn)
 		turn = YELLOW if turn == RED else RED
